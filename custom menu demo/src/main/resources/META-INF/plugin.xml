@@ -1,0 +1,55 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.example.custom-menu-demo</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Custom-menu-demo</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="support@example.com" url="https://www.example.com">Example Company</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Demo plugin for showing the custom menu items in IntelliJ
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.jetbrains.codeWithMe</depends>
+
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <rdserver.backend.delegating.actions implementation="com.example.custommenudemo.DemoBackendDelegatingActionIdsProvider" />
+    </extensions>
+
+    <actions>
+        <group class="com.example.custommenudemo.CustomEditorPopupActionsGroup"
+               id="demo.CustomEditorPopupToolsGroup2"
+               popup="false">
+            <add-to-group group-id="EditorPopupMenu2" />
+        </group>
+
+        <group class="com.example.custommenudemo.CustomEditorPopupActionsGroup"
+               id="demo.CustomEditorPopupToolsGroup"
+               popup="false">
+            <add-to-group group-id="EditorPopupMenu" />
+        </group>
+
+        <group class="com.intellij.openapi.actionSystem.DefaultActionGroup"
+               id="demo.StaticMenu"
+               popup="false"
+               text="Demo Static Menu Items">
+            <action class="com.example.custommenudemo.TestAction"
+                    description="Demo Static (Ardavan)"
+                    id="demo.static.test"
+                    text="*** Demo Static Menu (Ardavan) ***" />
+        </group>
+    </actions>
+</idea-plugin>
